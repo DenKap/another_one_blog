@@ -1,0 +1,33 @@
+<div class="categories-box">
+  <div class="wrapper">  
+    <div class="head">
+      <p class="move-back">&larr;<%=link_to 'Home Page', root_path %></p>
+      <h2 class="box-name">Categories</h2>
+      <p class="add btn btn-info"><%=link_to 'Add Category', new_admin_category_path %></p>
+    </div>
+
+    <% if @categories.present? %>
+      <table class="styled">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%=link_to category.name, category_path(category)%></td>
+            <td><%=category.description%></td>
+            <td><%=link_to "edit", edit_admin_category_path(category)%> / <%=link_to "delete", admin_category_path(category), method: :delete, data: { confirm: "Do you want to delete #{category.name}?" }%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="nothing">There are no Categories yet</p>
+    <% end %>
+
+  </div>
+</div>

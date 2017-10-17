@@ -1,0 +1,7 @@
+<%= render partial: 'layouts/partials/form_error_messages', locals: { object: @comment } %>
+
+<p class="label"><%=f.label :author, "Your Name:" %></p>
+<p><%=f.text_field :author %></p>
+
+<p class="label"><%=f.label :content, "Say something:" %></p>
+<p class="description"><%=f.text_area :content %></p>

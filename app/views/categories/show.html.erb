@@ -1,0 +1,52 @@
+<div class="category-box">
+  <div class="wrapper">
+    
+    <div class="head">
+      <p class="move-back">&larr;<%=link_to 'Categories', root_path %></p>
+      <p class="label label-success">Category: <%=@category.name %></p>
+      <p class="label label-default">Description: <%=@category.description %></p>
+      <p class="badge">Posts: <%=@category.posts.count %></p>
+    </div>
+
+    <p class="add btn btn-info"><%=link_to 'Add Post', new_category_post_path(@category) %></p>
+
+    <% if @posts.present? %>
+      <% @posts.each do |post| %>
+        <div class="panel panel-info">
+          <div class="panel-heading">      
+            <h3 class="panel-title"><%=link_to post.name, category_post_path(@category, post) %></h3>
+          </div>
+          <div class="panel-body">
+            <h3 class="desc"><%=post.content %></h3>
+          </div>
+        </div>
+      <% end %>     
+    <% else %>
+      <p class="nothing">There are no Posts here yet in <%=@category.name%></p>
+    <% end %>
+
+    <span class="pagination"><%= will_paginate @posts %></span>
+
+    <div id="comments">
+      <% if @comments.present? %>
+        <% @comments.each do |comment| %>
+            <% unless comment.new_record? %>
+              <%=render partial: 'comments/comment', locals: {comment: comment} %>
+            <% end %>
+        <% end %>
+      <% else %>
+        <p>There are no comments here yet in <%=@category.name %></p>
+      <% end %>
+    </div>
+
+    <div class="comments-form">
+      <ul class="errors"></ul>
+      <h1>Add New Comment</h1>
+      <%=form_for @comment, remote: true, url: category_comments_path(@category) do |f| %>
+        <%= render partial: 'comments/form', locals: { f: f } %>
+        <p class="submit"><%=f.submit 'Add new Comment' %></p>
+      <% end %>
+    </div>
+
+  </div>
+</div>

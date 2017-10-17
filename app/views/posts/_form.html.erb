@@ -1,0 +1,37 @@
+<div class="container">
+  <%= render partial: 'layouts/partials/form_error_messages', locals: { object: @post } %>
+
+  <div class="centered-wide-form">
+    <h3>*Post Title:</h3>
+    <p class="label"><%=f.label :name, 'Enter Post Name here:' %></p>
+    <p><%=f.text_field :name %></p>
+
+    <h3>*Content:</h3>
+    <p class="label"><%=f.label :content, 'Everything You want:' %></p>
+    <p><%=f.text_area :content, rows: 6 %></p>
+
+    <h3>File:</h3>
+    <p class="label"><%=f.label :file, 'Attach file:' %></p>
+    <div class="input-group" style="width: 500px; text-align: center;">
+      <span class="input-group-btn">
+        <span class="btn btn-small btn-primary btn-inverse" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+          <%=f.file_field :file, id: nil, autofocus: true, class: "form-control" , onchange: "$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
+      </span>
+      <span class="form-control" style="width: 120%;"></span>
+    </div>
+
+<!--     <p class="label">Add Files:</p>
+    <div class="post-files">
+      <div class="input-group" style="width: 500px; text-align: center;">
+        <span class="input-group-btn">
+          <span class="btn btn-small btn-primary btn-inverse" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+          <%=f.file_field "post_files[]", id: nil, autofocus: true, class: "form-control" , onchange: "$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
+        </span>
+        <span class="form-control" style="width: 120%;"></span>
+      </div>
+    </div>
+    <p><a href="#" id="add-more-files">+ add more files</a></p> -->
+
+    <p class="submit"><%=f.submit 'Send' %></p>
+  </div>
+</div>

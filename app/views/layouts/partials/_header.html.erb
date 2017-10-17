@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="#AnotherOneBlog.image" src="/">
+      </a>
+    </div>
+    <div class="navbar-header pull-right">
+      <% if session[:admin] == 'true' %>
+        <a class="btn btn-success navbar-btn" href='/admin'>Manage Categories</a>
+        <a class="btn btn-warning navbar-btn" href='/admin/settings'>Manage Settings</a>
+        <a class="btn btn-default navbar-btn" href='/logout'>Logout</a>
+      <% else %>
+        <a class="btn btn-default navbar-btn" href='/login'>Login as Owner</a>
+      <% end %>
+    </div>
+  </div>
+</nav>

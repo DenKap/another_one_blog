@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="page-header">
+      <h1>Another One Blog</h1>
+      <h3>Blog about something interesting should be?</h3>
+    </div>
+    <div class="row">
+      <% if @categories.present? %>
+        <% @categories.each do |category| %>
+          <div class="panel panel-success">
+            <div class="panel-heading">      
+              <h2 class="panel-title"><%=category.name %></h2>
+            </div>
+            <div class="panel-body">
+              <h3 class="desc"><%=category.description %></h3>
+              <%= link_to category_path(category), class: 'btn btn-info' do %>
+                See Posts in Category
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4>There are no Categories yet.</h4>
+      <% end %>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class=".col-md-4"><%=will_paginate @categories, :renderer => BootstrapPagination::Rails %></div>
+      </div>
+    </div>
+  </div>
+</div>
